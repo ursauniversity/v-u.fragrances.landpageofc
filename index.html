@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÉU FRAGRANCES — O véu que revela</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- RESET & VARIÁVEIS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --off-white: #f5f5f1;
+            --sand: #e5d3b0;
+            --silver: #b7b7b7;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #2a2a2a;
+            --overlay-dark: rgba(0, 0, 0, 0.7);
+            --overlay-light: rgba(0, 0, 0, 0.3);
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition-default: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--off-white);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- TIPOGRAFIA ---------- */
+        h1, h2, h3, h4, .serif {
+            font-family: var(--font-title);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background-color: var(--sand);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--sand);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        /* ---------- HEADER / NAVEGAÇÃO ---------- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo a {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--off-white);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition-default);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--sand);
+            transition: var(--transition-default);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--sand);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--off-white);
+            margin: 3px 0;
+            transition: var(--transition-default);
+        }
+
+        /* ---------- HOME / HERO ---------- */
+        #home {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-dark);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: var(--sand);
+            animation: fadeInUp 1.5s ease 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--off-white);
+            border: 1px solid var(--off-white);
+            text-decoration: none;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            transition: var(--transition-default);
+            animation: fadeInUp 1.5s ease 0.4s both;
+        }
+
+        .btn:hover {
+            background: var(--off-white);
+            color: var(--black);
+            border-color: var(--off-white);
+        }
+
+        /* ---------- ANIMAÇÕES ---------- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- A CASA ---------- */
+        .casa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .casa-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .casa-simbolo {
+            background: var(--gray-800);
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .casa-simbolo h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--sand);
+        }
+
+        .casa-simbolo p {
+            font-size: 1rem;
+            color: var(--silver);
+        }
+
+        /* ---------- AS FRAGRÂNCIAS ---------- */
+        .fragrancias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .frag-card {
+            background: var(--gray-800);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: var(--transition-default);
+            cursor: pointer;
+        }
+
+        .frag-card:hover {
+            transform: translateY(-5px);
+            background: var(--gray-700);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .frag-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--sand);
+        }
+
+        .frag-categoria {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .frag-piramide {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .frag-piramide li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        .frag-ocasiao, .frag-emocao {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: var(--off-white);
+        }
+
+        .frag-emocao {
+            font-style: italic;
+            color: var(--sand);
+        }
+
+        /* ---------- O VÉU (FILOSOFIA) ---------- */
+        .veu-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .veu-content blockquote {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            line-height: 1.5;
+            margin: 3rem 0;
+            font-style: italic;
+            color: var(--sand);
+        }
+
+        .veu-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ---------- CONTATO ---------- */
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contato-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contato-email {
+            font-size: 1.5rem;
+            font-family: var(--font-title);
+            color: var(--sand);
+            margin: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--gray-800);
+            color: var(--off-white);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-default);
+            border: 1px solid var(--gray-700);
+        }
+
+        .social-btn:hover {
+            background: var(--sand);
+            color: var(--black);
+            border-color: var(--sand);
+        }
+
+        .contato-whatsapp {
+            margin-top: 2rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray-900);
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        /* ---------- RESPONSIVO ---------- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .casa-grid, .contato-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home">VÉU</a>
+            </div>
+            <div class="nav-links">
+                <a href="#home">HOME</a>
+                <a href="#casa">A CASA</a>
+                <a href="#fragrancias">FRAGRÂNCIAS</a>
+                <a href="#veu">O VÉU</a>
+                <a href="#contato">CONTATO</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME -->
+        <section id="home">
+            <!-- Substitua pelo link do seu vídeo (YouTube ou arquivo local) -->
+            <iframe class="video-background" 
+                    src="https://www.youtube.com/embed/SEU-LINK-DO-VIDEO?autoplay=1&mute=1&loop=1&playlist=SEU-LINK-DO-VIDEO&controls=0&showinfo=0&rel=0&modestbranding=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+            </iframe>
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1>VÉU FRAGRANCES</h1>
+                <p>O véu que revela</p>
+                <a href="#fragrancias" class="btn">Conheça as fragrâncias</a>
+            </div>
+        </section>
+
+        <!-- A CASA -->
+        <section id="casa">
+            <div class="container">
+                <h2>A CASA</h2>
+                <div class="casa-grid">
+                    <div class="casa-text fade-in">
+                        <p>VÉU não é uma palavra. É um conceito.</p>
+                        <p>O véu cobre. O véu revela. O véu protege. O véu seduz.</p>
+                        <p>Uma mulher de véu não está escondida — está guardada. Há uma promessa no que está por baixo. Há poder no que não se mostra.</p>
+                        <p>O perfume é o véu invisível. Está lá, mas não se vê. Sente-se.</p>
+                    </div>
+                    <div class="casa-simbolo fade-in">
+                        <h3>O MANDACARU</h3>
+                        <p>O mandacaru é o cacto gigante do sertão. Ele floresce uma vez por ano, à noite. A flor branca dura apenas algumas horas e morre ao amanhecer.</p>
+                        <p>É o véu da noite. É a beleza rara. É o Nordeste que poucos veem.</p>
+                    </div>
+                </div>
+                <div class="casa-text fade-in" style="margin-top: 3rem;">
+                    <h3>O NORDESTE</h3>
+                    <p>Não vendemos paisagem. Vendemos profundidade. O Nordeste que está na pele, no couro, na terra seca e na flor que nasce da areia. O Nordeste que não se explica — sente-se.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AS FRAGRÂNCIAS -->
+        <section id="fragrancias">
+            <div class="container">
+                <h2>AS FRAGRÂNCIAS</h2>
+                <p class="section-subtitle">Cinco véus. Cinco revelações.</p>
+                <div class="fragrancias-grid">
+                    <!-- VÉU BRANCO -->
+                    <div class="frag-card fade-in">
+                        <h3>VÉU BRANCO</h3>
+                        <div class="frag-categoria">Floriental</div>
+                        <ul class="frag-piramide">
+                            <li><strong>Topo:</strong> Flor de laranjeira, bergamota, pêra</li>
+                            <li><strong>Coração:</strong> Jasmim, rosa branca, lírio</li>
+                            <li><strong>Fundo:</strong> Musk, baunilha, sândalo</li>
+                        </ul>
+                        <div class="frag-ocasiao"><strong>Ocasião:</strong> Casamento, primeiro encontro, dia importante</div>
+                        <div class="frag-emocao"><strong>Emoção:</strong> Pureza que não é ingênua. Força que não precisa gritar.</div>
+                    </div>
+
+                    <!-- VÉU NEGRO -->
+                    <div class="frag-card fade-in">
+                        <h3>VÉU NEGRO</h3>
+                        <div class="frag-categoria">Oriental amadeirado</div>
+                        <ul class="frag-piramide">
+                            <li><strong>Topo:</strong> Pimenta preta, açafrão, limão siciliano</li>
+                            <li><strong>Coração:</strong> Rosa negra, patchouli, couro</li>
+                            <li><strong>Fundo:</strong> Âmbar negro, sândalo, baunilha defumada</li>
+                        </ul>
+                        <div class="frag-ocasiao"><strong>Ocasião:</strong> Noite, sedução, poder</div>
+                        <div class="frag-emocao"><strong>Emoção:</strong> Quem usa não quer ser esquecido. E não é.</div>
+                    </div>
+
+                    <!-- VÉU SECO -->
+                    <div class="frag-card fade-in">
+                        <h3>VÉU SECO</h3>
+                        <div class="frag-categoria">Amadeirado aromático</div>
+                        <ul class="frag-piramide">
+                            <li><strong>Topo:</strong> Laranja da terra, ervas secas, pimenta rosa</li>
+                            <li><strong>Coração:</strong> Cumaru, vetiver, madeira queimada</li>
+                            <li><strong>Fundo:</strong> Couro, fumo, baunilha escura</li>
+                        </ul>
+                        <div class="frag-ocasiao"><strong>Ocasião:</strong> Dia quente, trabalho, raiz</div>
+                        <div class="frag-emocao"><strong>Emoção:</strong> Beleza onde ninguém espera. Força de quem sobrevive.</div>
+                    </div>
+
+                    <!-- VÉU DE LUA -->
+                    <div class="frag-card fade-in">
+                        <h3>VÉU DE LUA</h3>
+                        <div class="frag-categoria">Aquático aromático</div>
+                        <ul class="frag-piramide">
+                            <li><strong>Topo:</strong> Limão, folhas verdes, lavanda</li>
+                            <li><strong>Coração:</strong> Chá branco, íris, alecrim</li>
+                            <li><strong>Fundo:</strong> Musk, cedro, notas aquáticas</li>
+                        </ul>
+                        <div class="frag-ocasiao"><strong>Ocasião:</strong> Noite de verão, encontro casual, sono</div>
+                        <div class="frag-emocao"><strong>Emoção:</strong> Leveza que fica. Frescor que não irrita.</div>
+                    </div>
+
+                    <!-- VÉU SAGRADO -->
+                    <div class="frag-card fade-in">
+                        <h3>VÉU SAGRADO</h3>
+                        <div class="frag-categoria">Oriental incensual</div>
+                        <ul class="frag-piramide">
+                            <li><strong>Topo:</strong> Incenso, laranja, cravo</li>
+                            <li><strong>Coração:</strong> Olíbano, mirra, rosa</li>
+                            <li><strong>Fundo:</strong> Sândalo, baunilha, madeiras nobres</li>
+                        </ul>
+                        <div class="frag-ocasiao"><strong>Ocasião:</strong> Romaria, momento sagrado, introspecção</div>
+                        <div class="frag-emocao"><strong>Emoção:</strong> Perfume de quem tem fé. De quem prometeu e cumpriu.</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 3rem;">100mL — R$ 120,00 | Kit descoberta (5x10mL) — R$ 120,00</p>
+            </div>
+        </section>
+
+        <!-- O VÉU (FILOSOFIA) -->
+        <section id="veu">
+            <div class="container">
+                <h2>O VÉU</h2>
+                <div class="veu-content fade-in">
+                    <blockquote>
+                        "Nem tudo precisa ser visto. O que importa, sente-se."
+                    </blockquote>
+                    <p>
+                        VÉU FRAGRANCES existe para quem entende que presença não é barulho.<br>
+                        Que o mistério vale mais que a explicação.
+                    </p>
+                    <p>
+                        <strong>O que está por baixo?</strong><br>
+                        Tudo o que importa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato">
+            <div class="container">
+                <h2>CONTATO</h2>
+                <div class="contato-grid">
+                    <div class="contato-info fade-in">
+                        <p>Maceió, Alagoas — Brasil</p>
+                        <p class="contato-email">contato@veufragrances.com</p>
+                        <p><strong>Wholesale / Parcerias:</strong><br>Entre em contato para propostas comerciais.</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/veu.fragrances" target="_blank" class="social-btn">INSTAGRAM</a>
+                            <a href="https://youtube.com/@veu.fragrances" target="_blank" class="social-btn">YOUTUBE</a>
+                        </div>
+                        <div class="contato-whatsapp">
+                            <a href="https://wa.me/5582999999999" target="_blank" class="social-btn whatsapp-btn">WHATSAPP</a>
+                        </div>
+                    </div>
+                    <div class="contato-info fade-in">
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Atendimento direto com a casa.</p>
+                        <p>Para imprensa, revenda e colaborações, utilize o e-mail acima ou nossas redes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 VÉU FRAGRANCES — O véu que revela. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Menu mobile simples
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Animação de scroll (fade-in)
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
